@@ -1,5 +1,6 @@
 env
 requirements.txt
+archive
 *.xlsx
 *.ipynb
-arch*
+.DS_Store
