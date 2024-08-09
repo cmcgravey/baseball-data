@@ -2,4 +2,4 @@ env
 requirements.txt
 *.xlsx
 *.ipynb
-archive
+arch*
