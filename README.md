@@ -1,4 +1,4 @@
-#### MLB Season Stats Comparator ####
+## MLB Season Stats Comparator ##
 
 <b>By: Colin McGravey<b>
 
