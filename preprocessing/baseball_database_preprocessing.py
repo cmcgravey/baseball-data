@@ -1,7 +1,10 @@
 import pandas as pd
 import openpyxl
+import click
 
-def main():
+@click.command()
+@click.option("--debug", "debug", default=False)
+def main(debug):
     ## read csv file
     hitting_data = pd.read_csv('archive/batting.csv')
 
@@ -21,14 +24,21 @@ def main():
 
     ## Grouping by playerID and yearID decreasing
     hitting_data = hitting_data.sort_values(['playerID', 'yearID'])
+    hitting_data = hitting_data.reset_index(drop=True)
+    hitting_data.index.name = 'ID'
 
     ## Print one player's data by indexing by ID
-    stats = hitting_data[hitting_data['playerID'] == "aaronha01"]
+    if debug==True:
+        stats = hitting_data[hitting_data['playerID'] == "aaronha01"]
+        print(stats)
 
-    ## Dump data to spreadsheet
-    excel_file = 'hitting_data.xlsx'
-    hitting_data.to_excel(excel_file)
-
+    ## Dump data to spreadsheet or CSV
+    if debug == True:
+        excel_file = 'hitting_data.xlsx'
+        hitting_data.to_excel(excel_file)
+    else:
+        csv_file = "hitting_data.csv"
+        hitting_data.to_csv(csv_file)
 
 if __name__ == "__main__":
     main()

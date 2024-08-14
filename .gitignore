@@ -1,6 +1,7 @@
 env
 requirements.txt
 archive
+baseball-database-keypair.pem
 *.xlsx
 *.ipynb
 .DS_Store

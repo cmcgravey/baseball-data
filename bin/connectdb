@@ -1,0 +1,6 @@
+#!/bin/bash
+# connectdb
+
+# Stop on errors
+set -Eeuo pipefail
+
