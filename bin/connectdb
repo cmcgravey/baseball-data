@@ -4,3 +4,5 @@
 # Stop on errors
 set -Eeuo pipefail
 
+psql -h baseball-database.cozjgwrx3rkg.us-east-1.rds.amazonaws.com -U cmcgravey -d postgres
+
