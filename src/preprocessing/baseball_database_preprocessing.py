@@ -8,12 +8,7 @@ def insert_data(conn):
     data_file = open('hitting_data.csv', 'r')
 
     with conn.cursor() as curs:
-        curs.copy_from(file=data_file, table='players', 
-                        sep=',', columns=("ID", "player_id", "yearID", "stint", 
-                                            "teamID", "lgID", "G", "AB", "R", "H", 
-                                            "2B", "3B", "HR", "RBI", "SB", "CS", "BB", 
-                                            "SO", "IBB", "HBP", "SH", "SF", "GIDP", "AVG", 
-                                            "PA", "OBP", "1B", "TB", "SLG", "OPS"))
+        curs.copy_from(file=data_file, table='players', sep=',')
 
 @click.command()
 @click.option("--debug", "debug", default=False)
