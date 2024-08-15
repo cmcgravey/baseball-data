@@ -46,6 +46,15 @@ def main(debug):
         config = load_config()
         conn = connect(config)
 
+        with conn.cursor() as curs:
+            curs.copy_from(file='hitting_data.csv', table='Players', 
+                           sep=',', columns=("ID", "player_id", "yearID", "stint", 
+                                             "teamID", "lgID", "G", "AB", "R", "H", 
+                                             "2B", "3B", "HR", "RBI", "SB", "CS", "BB", 
+                                             "SO", "IBB", "HBP", "SH", "SF", "GIDP", "AVG", 
+                                             "PA", "OBP", "1B", "TB", "SLG", "OPS"))
+            
+
 
 if __name__ == "__main__":
     main()
