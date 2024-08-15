@@ -7,7 +7,7 @@ from utils.config import load_config, connect
 @click.option("--debug", "debug", default=False)
 def main(debug):
     ## read csv file
-    hitting_data = pd.read_csv('archive/batting.csv')
+    hitting_data = pd.read_csv('archive/Batting.csv')
 
     ## Filtering for players who played in the modern era, who played in more than 50 games in a season, and had more than 100 ABs
     hitting_data = hitting_data[hitting_data['yearID'] >= 1960]
