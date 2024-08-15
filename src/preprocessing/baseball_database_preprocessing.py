@@ -51,7 +51,7 @@ def main(debug):
         hitting_data.to_excel(excel_file)
     else:
         csv_file = "hitting_data.csv"
-        hitting_data.to_csv(csv_file)
+        hitting_data.to_csv(csv_file, index=False)
     
     ## Insert data to postgres database
     if debug == False:
