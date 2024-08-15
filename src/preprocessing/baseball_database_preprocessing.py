@@ -6,10 +6,11 @@ import pprint
 
 def insert_data(conn):
     ## Insert data into postgres database
-    data_file = open('hitting_data.csv', 'r')
-
-    with conn.cursor() as curs:
+    curs = conn.cursor()
+    with open('hitting_data.csv', 'r') as data_file:
         curs.copy_from(file=data_file, table='players', sep=',')
+    conn.commit()
+    curs.close()
 
 @click.command()
 @click.option("--debug", "debug", default=False)
