@@ -1,7 +1,20 @@
 import pandas as pd
-import openpyxl
+import csv
 import click
 from utils.config import load_config, connect
+
+def insert_data(conn):
+    ## Insert data into postgres database
+    data_file = open('hitting_data.csv', 'r')
+    iterator = csv.reader(data_file)
+
+    with conn.cursor() as curs:
+        curs.copy_from(file='hitting_data.csv', table='Players', 
+                        sep=',', columns=("ID", "player_id", "yearID", "stint", 
+                                            "teamID", "lgID", "G", "AB", "R", "H", 
+                                            "2B", "3B", "HR", "RBI", "SB", "CS", "BB", 
+                                            "SO", "IBB", "HBP", "SH", "SF", "GIDP", "AVG", 
+                                            "PA", "OBP", "1B", "TB", "SLG", "OPS"))
 
 @click.command()
 @click.option("--debug", "debug", default=False)
@@ -45,15 +58,9 @@ def main(debug):
     if debug == False:
         config = load_config()
         conn = connect(config)
+        insert_data(conn)
 
-        with conn.cursor() as curs:
-            curs.copy_from(file='hitting_data.csv', table='Players', 
-                           sep=',', columns=("ID", "player_id", "yearID", "stint", 
-                                             "teamID", "lgID", "G", "AB", "R", "H", 
-                                             "2B", "3B", "HR", "RBI", "SB", "CS", "BB", 
-                                             "SO", "IBB", "HBP", "SH", "SF", "GIDP", "AVG", 
-                                             "PA", "OBP", "1B", "TB", "SLG", "OPS"))
-            
+
 
 
 if __name__ == "__main__":
