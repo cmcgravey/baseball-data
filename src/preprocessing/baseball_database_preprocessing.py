@@ -1,6 +1,7 @@
 import pandas as pd
 import openpyxl
 import click
+from utils.config import load_config, connect
 
 @click.command()
 @click.option("--debug", "debug", default=False)
@@ -39,6 +40,15 @@ def main(debug):
     else:
         csv_file = "hitting_data.csv"
         hitting_data.to_csv(csv_file)
+    
+    ## Insert data to postgres database
+    if debug == False:
+        config = load_config()
+        print(config)
+        print("here")
+        conn = connect(config)
+
+
 
 if __name__ == "__main__":
     main()
