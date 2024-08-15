@@ -2,13 +2,14 @@ import pandas as pd
 import csv
 import click
 from utils.config import load_config, connect
+import pprint
 
 def insert_data(conn):
     ## Insert data into postgres database
     data_file = open('hitting_data.csv', 'r')
 
     with conn.cursor() as curs:
-        curs.copy_from(file=data_file, table='players', sep=',', null='')
+        curs.copy_from(file=data_file, table='players', sep=',')
 
 @click.command()
 @click.option("--debug", "debug", default=False)
@@ -38,7 +39,11 @@ def main(debug):
     ## Print one player's data by indexing by ID
     if debug==True:
         stats = hitting_data[hitting_data['playerID'] == "aaronha01"]
-        print(stats)
+        csv_file = 'debug.csv'
+        stats.to_csv(csv_file)
+
+        stats_dict = stats.to_dict()
+        pprint.pprint(stats_dict)
 
     ## Dump data to spreadsheet or CSV
     if debug == True:
@@ -53,8 +58,6 @@ def main(debug):
         config = load_config()
         conn = connect(config)
         insert_data(conn)
-
-
 
 
 if __name__ == "__main__":

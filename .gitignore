@@ -6,3 +6,4 @@ baseball-database-keypair.pem
 .DS_Store
 *.ini
 __pycache__
+debug.csv
