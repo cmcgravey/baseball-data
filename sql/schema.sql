@@ -1,5 +1,5 @@
 CREATE TABLE Players(
-    ID SERIAL, 
+    ID INTEGER, 
     playerID VARCHAR(50),
     yearID INTEGER,
     stint INTEGER,
