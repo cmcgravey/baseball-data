@@ -44,10 +44,7 @@ def main(debug):
     ## Insert data to postgres database
     if debug == False:
         config = load_config()
-        print(config)
-        print("here")
         conn = connect(config)
-
 
 
 if __name__ == "__main__":
